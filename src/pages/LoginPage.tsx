@@ -1,16 +1,14 @@
-import {Box, Grid, Paper} from "@material-ui/core";
-import LoginPrompt from "../components/LoginPrompt";
+import {Grid} from "@material-ui/core";
+import LoginForm from "../components/LoginForm";
 
 
 function LoginPage() {
     return (
-        <Paper elevation={0}>
-            <Grid container justify="center">
-                <Grid item xs={12} md={4} lg={4}>
-                    <LoginPrompt/>
-                </Grid>
+        <Grid style={{height: "55vh"}} container justify="center" alignItems="center">
+            <Grid item xs={12} md={4} lg={4}>
+                <LoginForm/>
             </Grid>
-        </Paper>
+        </Grid>
     )
 }
 

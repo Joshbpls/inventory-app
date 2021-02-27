@@ -4,10 +4,12 @@ import AuthContextProvider, {AuthContext} from "./context/AuthContext";
 import Dashboard from "./components/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
 import LoginPage from "./pages/LoginPage";
+import {CssBaseline} from "@material-ui/core";
 
 export function App() {
     return (
         <ApplicationThemeProvider>
+            <CssBaseline />
             <AuthContextProvider>
                 <Router>
                     <Switch>
