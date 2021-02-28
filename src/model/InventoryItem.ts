@@ -4,7 +4,7 @@
  * threshold: when to alert when the item gets low (optional)
  * category: the category name (optional)
  */
-export interface ItemType {
+export interface InventoryItem {
     name: string
     amount: number
     threshold?: number

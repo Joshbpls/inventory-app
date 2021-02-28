@@ -8,7 +8,7 @@ export interface AuthContextProperties {
 export const AuthContext = createContext<AuthContextProperties>({ authenticated: true, setAuthenticated: () => {}});
 
 export default function AuthContextProvider({ children }: { children: React.ReactNode }) {
-    const [authenticated, setAuthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState(true);
     return (
         <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
             {children}

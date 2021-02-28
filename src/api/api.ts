@@ -6,7 +6,7 @@ const API_URL = "api.test.com";
 function getAxios() {
     const instance = axios.create({ baseURL: API_URL });
     const token = localStorage.getItem("token");
-    instance.defaults.headers = { Auth: token };
+    instance.defaults.headers = { Authentication: `Bearer ${token}` };
     return instance;
 }
 

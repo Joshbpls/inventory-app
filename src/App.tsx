@@ -4,12 +4,10 @@ import AuthContextProvider, {AuthContext} from "./context/AuthContext";
 import Dashboard from "./components/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
 import LoginPage from "./pages/LoginPage";
-import {CssBaseline} from "@material-ui/core";
 
 export function App() {
     return (
         <ApplicationThemeProvider>
-            <CssBaseline />
             <AuthContextProvider>
                 <Router>
                     <Switch>
@@ -23,7 +21,7 @@ export function App() {
 }
 
 function AuthRoute(props: RouteProps) {
-    const {authenticated} = useContext(AuthContext);
+    const { authenticated } = useContext(AuthContext);
     if (authenticated) {
         return (<Route {...props} />)
     }
