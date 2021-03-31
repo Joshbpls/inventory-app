@@ -1,0 +1,67 @@
+    body {
+        
+        padding-top: 500px;
+        font-family:Montserrat;
+        font-size: large;
+        background-color: black;
+        border-radius: 20px;
+        top: 600px;
+
+    }
+   
+    .box{
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+
+        top: 600px;
+
+
+
+        width: 800px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align:center;
+        font-weight: 5000px;
+        color: white;
+        background-color: rgb(29, 29, 29);
+        border-radius: 10px;
+
+        
+    }
+    .buttons{
+
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center; 
+        color: white;
+        border-radius: 10px;
+
+        
+    }
+    
+    
+    .login, .signUp{
+        border: 0;
+        width: 500px ;
+        height: 50px;
+        border-radius: 25px ;
+        background: black;
+        margin: 20px auto;
+        display: block;
+        margin: 20px auto;
+        color: #F4F4F4;
+        font-size:large;
+        text-align: center;
+        font-family: Montserrat;
+
+
+    }
+
+    
