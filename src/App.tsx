@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Redirect, Route, RouteProps, Switch} from "reac
 import AuthContextProvider, {AuthContext} from "./context/AuthContext";
 import Dashboard from "./components/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
-import LoginPage from "./pages/LoginPage";
-import RegistrationPage from "./pages/RegistrationPage";
+import LoginPage from "./pages/login/LoginPage";
+import RegistrationPage from "./pages/register/RegistrationPage";
 
 export function App() {
     return (
