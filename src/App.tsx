@@ -4,6 +4,7 @@ import AuthContextProvider, {AuthContext} from "./context/AuthContext";
 import Dashboard from "./components/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
 import LoginPage from "./pages/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage";
 
 export function App() {
     return (
@@ -12,6 +13,7 @@ export function App() {
                 <Router>
                     <Switch>
                         <Route path="/login" component={LoginPage}/>
+                        <Route path="/register" component={RegistrationPage} />
                         <AuthRoute path="/" component={Dashboard}/>
                     </Switch>
                 </Router>

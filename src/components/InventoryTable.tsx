@@ -1,4 +1,13 @@
-import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow} from "@material-ui/core";
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow
+} from "@material-ui/core";
 import {InventoryItem} from "../model/InventoryItem";
 import {useState} from "react";
 
@@ -27,25 +36,27 @@ export function InventoryTable({ items }: InventoryTableProps) {
     }
 
     return (
-        <Table>
-            <TableHead>
-                <TableRow style={{backgroundColor: "#f1f1f1"}}>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Amount</TableCell>
-                    <TableCell>Category</TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {getVisibleItems().map(element => <InventoryItemRow key={element.name} item={element} />)}
-            </TableBody>
-            <TablePagination
-                count={items.length}
-                onChangePage={(event, page) => setPage(page)}
-                page={page}
-                rowsPerPage={ROWS_PER_PAGE}
-                rowsPerPageOptions={[]}
-            />
-        </Table>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow style={{backgroundColor: "#f1f1f1"}}>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Amount</TableCell>
+                        <TableCell>Category</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {getVisibleItems().map(element => <InventoryItemRow key={element.name} item={element} />)}
+                </TableBody>
+                <TablePagination
+                    count={items.length}
+                    onChangePage={(event, page) => setPage(page)}
+                    page={page}
+                    rowsPerPage={ROWS_PER_PAGE}
+                    rowsPerPageOptions={[]}
+                />
+            </Table>
+        </TableContainer>
     )
 }
 
