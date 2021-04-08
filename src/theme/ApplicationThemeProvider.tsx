@@ -4,7 +4,7 @@ import React from "react";
 const applicationTheme = createMuiTheme({
     palette: {
         primary: {
-            main: "#2973ff"
+            main: "#638efe"
         }
     },
     typography: {

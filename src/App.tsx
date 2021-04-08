@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {BrowserRouter as Router, Redirect, Route, RouteProps, Switch} from "react-router-dom";
 import AuthContextProvider, {AuthContext} from "./context/AuthContext";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
 import LoginPage from "./pages/login/LoginPage";
 import RegistrationPage from "./pages/register/RegistrationPage";

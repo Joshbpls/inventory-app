@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { LoginResponse } from './model'
+import { InventoryItem } from '../model/InventoryItem'
 
 const API_URL = 'api.test.com'
 
@@ -18,6 +19,10 @@ export function login(username: string, password: string): Promise<LoginResponse
 
 export function setToken(token: string) {
     localStorage.setItem('token', token)
+}
+
+export function updateItem(item: InventoryItem) {
+
 }
 
 export function getOrganizations() {
