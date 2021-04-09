@@ -1,11 +1,12 @@
 import { Button, CardActions, makeStyles, Typography } from '@material-ui/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRequest } from '../../hooks/useRequest'
 import { login } from '../../api/api'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { LoginResponse } from '../../api/model'
 import LandingPageCard from '../LandingPageCard'
 import SpacedTextField from '../../components/SpacedTextField'
+import { ResponseErrorText } from '../../components/alert/ErrorText'
 
 const useStyles = makeStyles({
     card: {
@@ -26,18 +27,24 @@ const useStyles = makeStyles({
 
 function RegisterLink() {
     return (
-        <Link to='/register'>
+        <Link style={{ textDecoration: 'none' }} to='/register'>
             <Typography style={{ display: 'inline' }} color='primary'>Register</Typography>
         </Link>
     )
 }
 
-
 function LoginForm() {
     const classes = useStyles()
+    const history = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [request, sendRequest] = useRequest<LoginResponse>()
+
+    useEffect(() => {
+        if (request.response?.success) {
+            history.push('/')
+        }
+    }, [request, history])
 
     function onClickSubmit() {
         sendRequest(login(username, password))
@@ -48,6 +55,7 @@ function LoginForm() {
             <div style={{ marginBottom: 10 }}>
                 <Typography className={classes.headerText} variant='h4'>Login</Typography>
                 <Typography>Don't have an account? <RegisterLink /></Typography>
+                <ResponseErrorText response={request.response} />
             </div>
             <form>
                 <SpacedTextField

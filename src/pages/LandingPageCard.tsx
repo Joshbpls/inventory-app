@@ -18,6 +18,10 @@ const useStyles = makeStyles({
     }
 })
 
+/**
+ * Component should only wrap the registration and login pages
+ */
+
 const LandingPageCard = ({ children }: { children: React.ReactNode }) => {
     const classes = useStyles();
     return (

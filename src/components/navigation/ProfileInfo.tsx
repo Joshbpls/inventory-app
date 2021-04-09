@@ -24,7 +24,7 @@ function ProfileInfo({ name, organization }: ProfileInfoProps) {
                 <Icon>
                     <img src={UserIcon} alt='ProfileIcon' height={45} width={45}/>
                 </Icon>
-                <Typography variant='h6'>{name}</Typography>
+                <Typography variant='h6'>Welcome, {name}</Typography>
                 <Typography variant='caption' color='textSecondary'>{organization}</Typography>
             </div>
         </div>

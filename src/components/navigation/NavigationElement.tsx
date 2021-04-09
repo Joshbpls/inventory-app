@@ -6,7 +6,7 @@ import React from 'react'
 export interface NavigationElementProps {
     label: string
     to: string
-    icon: React.ReactNode
+    icon?: React.ReactNode
 }
 
 const useStyles = makeStyles({

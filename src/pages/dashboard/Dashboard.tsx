@@ -1,18 +1,10 @@
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Dialog,
-    Grid,
-    Typography, withStyles
-} from '@material-ui/core'
+import { Box, Button, Card, CardContent, CardHeader, Dialog, Grid, Typography, withStyles } from '@material-ui/core'
 import { ItemTable } from '../../components/table/ItemTable'
 import NavigationBar from '../../components/navigation/NavigationBar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { InventoryItem } from '../../model/InventoryItem'
 import PopupContent, { PopupContentType } from './PopupContent'
+import { useParams } from 'react-router-dom'
 
 const SpacedButton = withStyles({
     root: {
@@ -20,18 +12,29 @@ const SpacedButton = withStyles({
     }
 })(Button)
 
-export interface DashboardProps {
-    items: InventoryItem[]
-
+export interface DashboardParams {
+    id: string
 }
 
 function Dashboard() {
 
+    const { id } = useParams<DashboardParams>();
+
     const [editing, setEditing] = useState<InventoryItem>()
     const [opened, setOpened] = useState<PopupContentType>('none')
+    const [request, sendRequest] = useState();
+
+    useEffect(() => {
+
+    }, [id])
+
+    const onItemClick = (item: InventoryItem) => {
+        setEditing(item)
+        setOpened('editor')
+    }
 
     return (
-        <div>
+        <div style={{padding: 50}}>
             <Dialog open={opened !== 'none'} onClose={() => setOpened('none')}>
                 <PopupContent type={opened} items={[]} item={editing} />
             </Dialog>
@@ -46,7 +49,10 @@ function Dashboard() {
                                 <Typography variant='h5'>Inventory Content</Typography>
                                 <TableButtons setPopupContentType={setOpened} />
                             </Box>
-                            <ItemTable items={[]} />
+                            <ItemTable
+                                onActionClick={onItemClick}
+                                items={[]}
+                            />
                         </CardContent>
                     </Card>
                 </Grid>
@@ -81,4 +87,4 @@ function TableButtons({ setPopupContentType }: { setPopupContentType: (type: Pop
     )
 }
 
-export default Dashboard
+export default Dashboard;

@@ -5,7 +5,6 @@ export interface ItemEditorProps {
     item?: InventoryItem
 }
 
-
 function ItemEditor({ item }: ItemEditorProps) {
     return (
         <Card>

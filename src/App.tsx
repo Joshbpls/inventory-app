@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ApplicationThemeProvider from "./theme/ApplicationThemeProvider";
 import LoginPage from "./pages/login/LoginPage";
 import RegistrationPage from "./pages/register/RegistrationPage";
+import OrganizationPage from './pages/organization/OrganizationPage'
 
 export function App() {
     return (
@@ -14,7 +15,8 @@ export function App() {
                     <Switch>
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/register" component={RegistrationPage} />
-                        <AuthRoute path="/" component={Dashboard}/>
+                        <AuthRoute path='/orgs/:id' component={Dashboard} />
+                        <AuthRoute path='/' component={OrganizationPage}/>
                     </Switch>
                 </Router>
             </AuthContextProvider>
