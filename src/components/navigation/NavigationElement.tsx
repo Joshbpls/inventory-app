@@ -7,6 +7,7 @@ export interface NavigationElementProps {
     label: string
     to: string
     icon?: React.ReactNode
+    onClick?: () => void
 }
 
 const useStyles = makeStyles({
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 })
 
 
-function NavigationElement({ label, to, icon }: NavigationElementProps) {
+function NavigationElement({ label, to, icon, onClick }: NavigationElementProps) {
     const classes = useStyles()
     const location = useLocation()
 
@@ -35,7 +36,7 @@ function NavigationElement({ label, to, icon }: NavigationElementProps) {
     const getConditionalStyle = () => isSelected() ? classes.selected : classes.unselected;
 
     return (
-        <Link to={to} style={{ textDecoration: 'none' }}>
+        <Link onClick={onClick} to={to} style={{ textDecoration: 'none' }}>
             <Card elevation={0} className={getConditionalStyle()}>
                 <CardContent className={classes.content} style={{paddingBottom: 8}}>
                     {icon}

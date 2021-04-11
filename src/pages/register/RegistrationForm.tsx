@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Button, CardActions, makeStyles, Typography } from '@material-ui/core'
 import LandingPageCard from '../LandingPageCard'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import SpacedTextField from '../../components/SpacedTextField'
 import { useRequest } from '../../hooks/useRequest'
 import { register, setToken } from '../../api/api'
 import { ResponseErrorText } from '../../components/alert/ErrorText'
 import { RegistrationResponse } from '../../api/model'
-import { useHistory } from 'react-router-dom'
 
 interface RegistrationFormFields {
     email?: string
@@ -41,11 +40,10 @@ function RegistrationForm() {
     const onSubmit = () => sendRequest(register(form.email!, form.name!, form.password!))
 
     useEffect(() => {
-        if(request.response?.success) {
-            if(request.response.token) {
-                setToken(request.response.token)
-                history.push('/')
-            }
+        const { response } = request
+        if (response?.success && response.token) {
+            setToken(response.token)
+            history.push('/')
         }
     }, [request, history])
 

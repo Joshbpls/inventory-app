@@ -1,7 +1,7 @@
 import { Button, CardActions, makeStyles, Typography } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { useRequest } from '../../hooks/useRequest'
-import { login } from '../../api/api'
+import { login, setToken } from '../../api/api'
 import { Link, useHistory } from 'react-router-dom'
 import { LoginResponse } from '../../api/model'
 import LandingPageCard from '../LandingPageCard'
@@ -41,7 +41,9 @@ function LoginForm() {
     const [request, sendRequest] = useRequest<LoginResponse>()
 
     useEffect(() => {
-        if (request.response?.success) {
+        const { response } = request
+        if (response?.success && response.token) {
+            setToken(response.token)
             history.push('/')
         }
     }, [request, history])

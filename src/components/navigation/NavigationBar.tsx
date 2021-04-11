@@ -2,11 +2,13 @@ import { Card, CardContent, Grid } from '@material-ui/core'
 import NavigationElement, { NavigationElementProps } from './NavigationElement'
 import ProfileInfo from './ProfileInfo'
 import { OrganizationData } from '../../api/model'
-import { AccountBox, Group } from '@material-ui/icons'
+import { AccountBox, Group, Input } from '@material-ui/icons'
+import { setToken } from '../../api/api'
 
 export interface NavigationBarProps {
     firstName: string
     organizations: OrganizationData[]
+    onClick?: () => void
 }
 
 function NavigationElementGridItem(props: NavigationElementProps) {
@@ -20,14 +22,20 @@ function NavigationElementGridItem(props: NavigationElementProps) {
 function NavigationBar() {
 
     return (
-        <Card elevation={0} style={{height: '100%'}}>
-            <CardContent>
-                <Grid spacing={2} container direction='column'>
+        <Card elevation={0} style={{ height: '90vh' }}>
+            <CardContent style={{ height: '100%' }}>
+                <Grid spacing={2} container direction='column' justify='space-between'>
                     <Grid item>
-                        <ProfileInfo name='User' organization='Colo Inv.'/>
+                        <ProfileInfo name='User' organization='Colo Inv.' />
                     </Grid>
                     <NavigationElementGridItem label='Organizations' to='/' icon={<Group />} />
                     <NavigationElementGridItem label='Account' to='/account' icon={<AccountBox />} />
+                    <NavigationElementGridItem
+                        label='Logout'
+                        to='/login'
+                        icon={<Input />}
+                        onClick={() => setToken('')}
+                    />
                 </Grid>
             </CardContent>
         </Card>

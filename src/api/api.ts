@@ -34,6 +34,10 @@ export function updateItem(item: InventoryItem) {
 
 }
 
+export function createOrganization(name: string) {
+    return getAxios().post('/org/create', { name }).then(res => res.data)
+}
+
 export function getOrganizations() {
     return getAxios().get('/user/orgs').then(res => res.data)
 }
