@@ -6,7 +6,7 @@ import SpacedTextField from '../../components/SpacedTextField'
 import { useRequest } from '../../hooks/useRequest'
 import { register, setToken } from '../../api/api'
 import { ResponseErrorText } from '../../components/alert/ErrorText'
-import { RegistrationResponse } from '../../api/model'
+import { AuthenticationResponse } from '../../api/model'
 
 interface RegistrationFormFields {
     email?: string
@@ -35,7 +35,7 @@ function RegistrationForm() {
     const classes = useStyles()
     const history = useHistory()
     const [form, setForm] = useState<RegistrationFormFields>({})
-    const [request, sendRequest] = useRequest<RegistrationResponse>()
+    const [request, sendRequest] = useRequest<AuthenticationResponse>()
 
     const onSubmit = () => sendRequest(register(form.email!, form.name!, form.password!))
 

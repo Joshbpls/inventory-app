@@ -1,31 +1,17 @@
-import {
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow
-} from '@material-ui/core'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core'
 import { InventoryItem } from '../../model/InventoryItem'
-import { useState } from 'react'
-import { Edit } from '@material-ui/icons'
+import React, { useState } from 'react'
+import ItemRow from './ItemRow'
 
 
 const ROWS_PER_PAGE = 5
 
 interface ItemTableProps {
     items: InventoryItem[]
-    onActionClick: (clicked: InventoryItem) => void
+    onEditSuccess: () => void
 }
 
-interface ItemRowProps {
-    item: InventoryItem
-    onActionClick: (clicked: InventoryItem) => void
-}
-
-export function ItemTable({ items, onActionClick }: ItemTableProps) {
+export function ItemTable({ items, onEditSuccess }: ItemTableProps) {
 
     const [page, setPage] = useState(0)
 
@@ -33,7 +19,7 @@ export function ItemTable({ items, onActionClick }: ItemTableProps) {
         const start = page * ROWS_PER_PAGE
         let end = start + ROWS_PER_PAGE
         if (end >= items.length) {
-            end = items.length;
+            end = items.length
         }
         return items.slice(start, end)
     }
@@ -43,16 +29,16 @@ export function ItemTable({ items, onActionClick }: ItemTableProps) {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell colSpan={2}>Name</TableCell>
+                        <TableCell width={25} />
+                        <TableCell>Name</TableCell>
                         <TableCell>Amount</TableCell>
                         <TableCell>Category</TableCell>
-                        <TableCell align='right'>Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {getVisibleItems()
                         .map(element =>
-                            <ItemRow key={element.name} item={element} onActionClick={onActionClick} />
+                            <ItemRow key={element.name} item={element} onEditSuccess={onEditSuccess} />
                         )}
                 </TableBody>
                 <TablePagination
@@ -64,20 +50,5 @@ export function ItemTable({ items, onActionClick }: ItemTableProps) {
                 />
             </Table>
         </TableContainer>
-    )
-}
-
-function ItemRow({ item, onActionClick }: ItemRowProps) {
-    return (
-        <TableRow>
-            <TableCell colSpan={2}>{item.name}</TableCell>
-            <TableCell>{item.amount}</TableCell>
-            <TableCell>{item.category || 'N/A'}</TableCell>
-            <TableCell align='right'>
-                <IconButton onClick={() => onActionClick(item)}>
-                    <Edit />
-                </IconButton>
-            </TableCell>
-        </TableRow>
     )
 }

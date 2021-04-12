@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRequest } from '../../hooks/useRequest'
 import { login, setToken } from '../../api/api'
 import { Link, useHistory } from 'react-router-dom'
-import { LoginResponse } from '../../api/model'
+import { AuthenticationResponse } from '../../api/model'
 import LandingPageCard from '../LandingPageCard'
 import SpacedTextField from '../../components/SpacedTextField'
 import { ResponseErrorText } from '../../components/alert/ErrorText'
@@ -38,7 +38,7 @@ function LoginForm() {
     const history = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [request, sendRequest] = useRequest<LoginResponse>()
+    const [request, sendRequest] = useRequest<AuthenticationResponse>()
 
     useEffect(() => {
         const { response } = request

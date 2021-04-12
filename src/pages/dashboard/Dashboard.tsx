@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import { InventoryItem } from '../../model/InventoryItem'
 import PopupContent, { PopupContentType } from './PopupContent'
 import { useParams } from 'react-router-dom'
+import { BasicResponse } from '../../api/model'
+import { getInventory } from '../../api/api'
+import { useRequest } from '../../hooks/useRequest'
 
 const SpacedButton = withStyles({
     root: {
@@ -16,27 +19,45 @@ export interface DashboardParams {
     id: string
 }
 
+interface GetItemsResponse extends BasicResponse {
+    items: InventoryItem[]
+}
+
 function Dashboard() {
 
-    const { id } = useParams<DashboardParams>();
+    const { id } = useParams<DashboardParams>()
 
-    const [editing, setEditing] = useState<InventoryItem>()
     const [opened, setOpened] = useState<PopupContentType>('none')
-    const [request, sendRequest] = useState();
+    const [items, setItems] = useState<InventoryItem[]>([])
+    const [request, sendRequest] = useRequest<GetItemsResponse>()
 
-    useEffect(() => {
-
-    }, [id])
-
-    const onItemClick = (item: InventoryItem) => {
-        setEditing(item)
-        setOpened('editor')
+    const onItemCreate = () => {
+        setOpened('none')
+        sendRequest(getInventory(id))
     }
 
+    const updateItems = () => sendRequest(getInventory(id))
+
+    useEffect(() => {
+        const { response } = request;
+        if(response?.success) {
+            setItems(response.items)
+        }
+    }, [request])
+
+    useEffect(() => {
+        sendRequest(getInventory(id))
+    }, [id, sendRequest])
+
     return (
-        <div style={{padding: 50}}>
+        <div style={{ padding: 50 }}>
             <Dialog open={opened !== 'none'} onClose={() => setOpened('none')}>
-                <PopupContent type={opened} items={[]} item={editing} />
+                <PopupContent
+                    type={opened}
+                    items={items}
+                    onItemCreate={onItemCreate}
+                    orgId={id}
+                />
             </Dialog>
             <Grid container spacing={5}>
                 <Grid item xs={2} md={2} lg={2}>
@@ -50,8 +71,8 @@ function Dashboard() {
                                 <TableButtons setPopupContentType={setOpened} />
                             </Box>
                             <ItemTable
-                                onActionClick={onItemClick}
-                                items={[]}
+                                onEditSuccess={updateItems}
+                                items={items}
                             />
                         </CardContent>
                     </Card>
@@ -59,7 +80,7 @@ function Dashboard() {
                 <Grid item xs={12} md={3} lg={3}>
                     <Card elevation={0}>
                         <CardContent>
-                            <CardHeader title='Notifications' />
+                            <CardHeader title='Recent Activity' />
                         </CardContent>
                     </Card>
                 </Grid>
@@ -77,14 +98,8 @@ function TableButtons({ setPopupContentType }: { setPopupContentType: (type: Pop
                 onClick={() => setPopupContentType('creator')}>
                 Create
             </SpacedButton>
-            <SpacedButton
-                color='primary'
-                variant='contained'
-                onClick={() => setPopupContentType('operation')}>
-                Edit
-            </SpacedButton>
         </Box>
     )
 }
 
-export default Dashboard;
+export default Dashboard

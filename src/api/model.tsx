@@ -3,11 +3,12 @@ export interface BasicResponse {
     message: string
 }
 
-export interface LoginResponse extends BasicResponse {
+export interface AuthenticationResponse extends BasicResponse {
     token?: string
 }
 
-export interface RegistrationResponse extends LoginResponse {
+export interface UserOrganizationResponse extends BasicResponse {
+    orgs: OrganizationModel[]
 }
 
 export interface OrganizationData {
@@ -28,8 +29,9 @@ export interface OrganizationModel {
     members: UserModel[]
 }
 
-export interface UserOrganizationResponse extends BasicResponse {
-    orgs: OrganizationModel[]
+export interface ItemUpdatePayload {
+    name?: string
+    amount?: number
+    category?: string
 }
-
 

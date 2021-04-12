@@ -10,6 +10,7 @@ export interface InventoryItem {
     id?: string
     name: string
     amount: number
+    organization: string
     location?: string
     threshold?: number
     category?: string
