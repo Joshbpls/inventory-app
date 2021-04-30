@@ -31,7 +31,7 @@ export function setToken(token: string) {
 }
 
 export function updateItem(id: string, payload: ItemUpdatePayload) {
-    return getAxios().post(`/item/${id}/update`, {...payload}).then(res => res.data)
+    return getAxios().post(`/item/${id}/update`, { ...payload }).then(res => res.data)
 }
 
 export function createItem(item: InventoryItem) {
@@ -40,6 +40,10 @@ export function createItem(item: InventoryItem) {
 
 export function createOrganization(name: string) {
     return getAxios().post('/org/create', { name }).then(res => res.data)
+}
+
+export function getEventList(id: string) {
+    return getAxios().get(`/log/${id}/list`).then(res => res.data)
 }
 
 export function getOrganizations() {

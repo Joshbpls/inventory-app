@@ -74,7 +74,7 @@ interface PageContentProps {
 }
 
 function PageContent({ orgs, onButtonClick }: PageContentProps) {
-    if (orgs) {
+    if (orgs && orgs.length > 0) {
         return <OrganizationCardList orgs={orgs} />
     }
     return <CreateOrganization onButtonClick={onButtonClick} />

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { BasicResponse } from '../../api/model'
 import { getInventory } from '../../api/api'
 import { useRequest } from '../../hooks/useRequest'
+import RecentActivityContainer from '../../components/activity/RecentActivityContainer'
 
 const SpacedButton = withStyles({
     root: {
@@ -39,8 +40,8 @@ function Dashboard() {
     const updateItems = () => sendRequest(getInventory(id))
 
     useEffect(() => {
-        const { response } = request;
-        if(response?.success) {
+        const { response } = request
+        if (response?.success) {
             setItems(response.items)
         }
     }, [request])
@@ -78,11 +79,7 @@ function Dashboard() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={3} lg={3}>
-                    <Card elevation={0}>
-                        <CardContent>
-                            <CardHeader title='Recent Activity' />
-                        </CardContent>
-                    </Card>
+                    <RecentActivityContainer org={id} />
                 </Grid>
             </Grid>
         </div>

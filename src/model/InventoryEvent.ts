@@ -3,7 +3,12 @@
  * type: The event type (add/remove/edit)
  */
 
+export interface NameHolder {
+    name?: string
+}
+
 export interface InventoryEvent {
-    user: string
-    type: string
+    user: NameHolder
+    action: string
+    timestamp: number
 }
