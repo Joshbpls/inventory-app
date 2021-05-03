@@ -2,7 +2,6 @@ import { Icon, makeStyles, Typography } from '@material-ui/core'
 import UserIcon from '../../svg/user.svg'
 
 export interface ProfileInfoProps {
-    name: string
     organization: string
 }
 
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
     }
 })
 
-function ProfileInfo({ name, organization }: ProfileInfoProps) {
+function ProfileInfo({ organization }: ProfileInfoProps) {
     const classes = useStyles()
     return (
         <div className={classes.container}>
@@ -24,7 +23,7 @@ function ProfileInfo({ name, organization }: ProfileInfoProps) {
                 <Icon>
                     <img src={UserIcon} alt='ProfileIcon' height={45} width={45}/>
                 </Icon>
-                <Typography variant='h6'>Welcome, {name}</Typography>
+                <Typography variant='h6'>Welcome</Typography>
                 <Typography variant='caption' color='textSecondary'>{organization}</Typography>
             </div>
         </div>
