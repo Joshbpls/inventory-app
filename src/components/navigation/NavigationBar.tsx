@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid } from '@material-ui/core'
 import NavigationElement, { NavigationElementProps } from './NavigationElement'
 import ProfileInfo from './ProfileInfo'
-import { AccountBox, Group, Input } from '@material-ui/icons'
+import { Group, Input } from '@material-ui/icons'
 import { setToken } from '../../api/api'
 
 function NavigationElementGridItem(props: NavigationElementProps) {
@@ -22,7 +22,6 @@ function NavigationBar() {
                         <ProfileInfo organization='Inventory Manager' />
                     </Grid>
                     <NavigationElementGridItem label='Organizations' to='/' icon={<Group />} />
-                    <NavigationElementGridItem label='Account' to='/account' icon={<AccountBox />} />
                     <NavigationElementGridItem
                         label='Logout'
                         to='/login'
